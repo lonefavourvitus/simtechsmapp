@@ -1,0 +1,1716 @@
+<script>
+	// import { supabase } from '$lib/supabaseClient';
+
+	// import { handleDrugRemoval } from '/src/functions/handleDrugRemovalFunction_F.svelte';
+	import {
+		newStockBtnIsNeeded,
+		bb,
+		lumpCompDarkProps,
+		oll,
+		jj,
+		drugStore,
+		drugProperties,
+		indexMagic,
+		cancelToggler,
+		cancel,
+		nodeStopper,
+		ll
+	} from '../../../stores';
+	// import Button from '$lib/Button.svelte';
+	// import SingleInputElementComp from '$lib/SingleInputElementComp.svelte';
+	// import ButtonRev from '$lib/ButtonRev.svelte';
+	// import   from '$lib/ .svelte';
+	// import drugName from '$lib/DrugsInputForm.svelte';
+	// import TotalAmountInNairaComp from '$lib/TotalAmountInNairaComp.svelte';
+	// import   from '$lib/ .svelte';
+	import { fade, blur, fly, slide, scale } from 'svelte/transition';
+	// import RemoveBtn from '$lib/RemoveBtn.svelte';
+	// import { nodeUnitFunction } from '/src/functions/nodeUnitFuncForLump_F.svelte';
+	// import { nodeActiony } from '/src/functions/node_F_nodeCounter.svelte';
+
+	export let eachStock = [];
+
+	$: em = eachStock;
+	$: namey = eachStock[0];
+	$: totalAmountInNaira = eachStock[3].reduce((a, { price }) => a + price, 0);
+	$: totalAmountRemaining = eachStock[1] - eachStock[3].length;
+	$: totalAmountSoldInUnits = eachStock[3].length;
+	$: {
+		if (totalAmountRemaining === 0) {
+			console.log('noooooo');
+			$newStockBtnIsNeeded = true;
+		}
+	}
+	export const pricey = eachStock[1];
+	let rr = 68;
+	let stockPositionRaw;
+	let newStockAmount;
+	let newPriceTag;
+	$: console.log(eachStock[0]);
+	$: console.log(eachStock[0][0]);
+	$: console.log(eachStock[0][0]);
+	$: console.log(eachStock[1]);
+	$: console.log(eachStock[2]);
+	$: console.log(eachStock[3]);
+	$: console.log(eachStock[3]);
+	console.log(eachStock);
+	console.log(eachStock[0]);
+	console.log(eachStock[0][0]);
+	console.log('eachStock[3] is:', eachStock[3][1]);
+	let tt = true;
+	let toggler = true;
+	function nj(node) {
+		// node.remove();
+	}
+	function enhace(node) {
+		console.log(node.textContent);
+		if (node.textContent >= eachStock[1][0]) {
+			console.log('e don reach');
+			// node.remove();
+		}
+	}
+	// log(rt[1].sales_input.drugName);
+	function nodeActionyf(node) {
+		// let noder;
+
+		// nodeStopper.subscribe((value) => {
+		// 	noder = value;
+		// 	console.log('nodeStopper from nodeAction func updated:', noder);
+		// });
+		if ($nodeStopper.includes(node.textContent)) {
+			console.log(`${node.textContent} is already in $nodeStopper array, will not push.`);
+			return;
+		} else {
+			$nodeStopper.push(node.textContent);
+			console.log('Node is: ', node, 'text content pushed:', $nodeStopper);
+		}
+		console.log($nodeStopper);
+		console.log('nodeStopper array is:', $nodeStopper);
+
+		return {
+			destroy() {
+				$nodeStopper = $nodeStopper.filter((val) => val !== node.textContent);
+				// $nodeStopper = [];
+
+				console.log($nodeStopper);
+				console.log(
+					// nodeStopper.subscribe((val) => {
+					// 	val = [];
+					console.log($nodeStopper)
+					// })
+				);
+			}
+		};
+	}
+	function findIndexByValue(value) {
+		return $drugStore.findIndex((element) => {
+			if (Array.isArray(element)) {
+				return element.flat().includes(value);
+			}
+
+			console.log(`${element} is not an array`);
+			return false;
+		});
+	}
+	let isDisabledForStockAndNewPriceTagSubmitBtn = 'disabled';
+	function clickHandler() {
+		toggler = !toggler;
+		let sbt = eachStock[0];
+		$ll = true;
+		console.log(`ll from clickhandler is ${$ll}, should be what?`);
+		$indexMagic = true;
+	}
+
+	$: {
+		newStockAmount == null || newStockAmount > 1000 || newPriceTag == null || newPriceTag > 5000
+			? (isDisabledForStockAndNewPriceTagSubmitBtn = 'disabled')
+			: (isDisabledForStockAndNewPriceTagSubmitBtn = '');
+	}
+	function pushNewStockArray() {
+		let dn = eachStock[3][0];
+		console.log('dn i.e eachStock[3][0] is:', eachStock[3][0]);
+		let brandDrugName = dn.drugName;
+		console.log('brandDrugName is: ', brandDrugName);
+		let drugStoreIndex = findIndexByValue(brandDrugName);
+		console.log(drugStoreIndex);
+
+		function findIndexByValueS() {
+			return $drugStore[drugStoreIndex][5].findIndex((pelement) => {
+				if (Array.isArray(pelement)) {
+					return pelement.flat().includes(eachStock[0][0]);
+				}
+				console.log('i from stockvaluefunc is:', i);
+				console.log(`${pelement} is not an array`);
+				return false;
+			});
+		}
+
+		let st = findIndexByValueS();
+
+		function nb() {
+			return $drugProperties.findIndex((element) => {
+				// if (Array.isArray(element)) {
+				return element.flat().includes(brandDrugName);
+				// }
+
+				// console.log(`${element} is not an array`);
+				// return false;
+			});
+		}
+		let ny = nb();
+		drugStore.update((storeValue) => {
+			const stockCount = storeValue[drugStoreIndex][5].length + 1; // Get the count of existing stock information arrays
+			console.log(storeValue[drugStoreIndex][5][0][0][0]);
+			let stockSuffix;
+			if (stockCount === 1) {
+				stockSuffix = 'st';
+			} else if (stockCount === 2) {
+				stockSuffix = 'nd';
+			} else if (stockCount === 3) {
+				stockSuffix = 'rd';
+			} else {
+				stockSuffix = 'th';
+			}
+
+			const stockName = `${stockCount}${stockSuffix} stock`; // Generate the stock name
+			$oll.push(stockName);
+
+			const newStockArray = [
+				[stockName], // Stock name array
+				[Number(newStockAmount)], // Stock-related value arrays
+				[Number(newPriceTag)], // Stock details array,
+				[] // Stock details array,
+			];
+
+			storeValue[drugStoreIndex][5].push(newStockArray);
+			stockPositionRaw = storeValue[drugStoreIndex][5][st][0][0];
+			// baa = storeValue[drugStoreIndex][5][st][0][0];
+
+			storeValue[drugStoreIndex][5][st][0][0] = stockPositionRaw + '.';
+
+			console.log(storeValue[drugStoreIndex][5][0][0][0]);
+			console.log(stockPositionRaw);
+			console.log(drugStore, storeValue);
+			console.log(storeValue, 0);
+			console.log(storeValue[drugStoreIndex]);
+			console.log(storeValue[drugStoreIndex][5]);
+			$nodeStopper = $nodeStopper.filter((val) => val !== brandDrugName);
+			// const { data: updatedRows, error: updateError } = supabase
+			// 	.from('drug_sales_input')
+			// 	.select('*');
+			// .update({ last_stock_position: '1st stock.' })
+			// .eq('last_stock_position', '1st stock');
+			// if (updateError) {
+			// 	console.error(updateError);
+			// } else {
+			// 	// console.log(data);
+			// 	console.log(updatedRows);
+			// }
+
+			$cancelToggler = true;
+			$ll = false;
+			$bb = true;
+			$cancel = true;
+			$jj = true;
+			return storeValue;
+		});
+
+		function updatePriceTag() {
+			drugProperties.update((drugs) => {
+				return drugs.map((drug) => {
+					if (drug[0] === brandDrugName || drug[1] === brandDrugName || drug[2] === brandDrugName) {
+						console.log(typeof newStockAmount);
+
+						return [...drug.slice(0, 3), Number(newPriceTag)];
+					} else {
+						return drug;
+					}
+				});
+			});
+		}
+
+		updatePriceTag();
+		// supabase
+		// 	.from('drug_sales_input')
+		// 	.update({
+		// 		last_stock_position: stockPositionRaw + '.'
+		// 	})
+		// 	.eq('ref_unit_name', brandDrugName)
+		// 	.eq('last_stock_position', stockPositionRaw) // Add this line to filter by '1st stock'
+		// 	.order('id')
+		// 	// .single()
+		// 	.then((result) => console.log(result))
+		// 	.catch((error) => console.log(error));
+		tt = false;
+		console.log($cancelToggler);
+		dn = null;
+		console.log('dn i.e eachStock[3][0] is:', dn);
+		brandDrugName = null;
+		console.log('brandDrugName is: ', brandDrugName);
+		drugStoreIndex = null;
+		console.log(drugStoreIndex);
+		st = null;
+		console.log(st);
+		console.log($nodeStopper);
+	}
+	// const { data: op, error } = supabase.from('drug_sales_input').select('*');
+	// 	// .upsert({ ref_unit_name: 'digene relief gel', last_stock_position: 'yeaaahhh' });
+	// 	if (error) {
+	// 		console.error(error);
+	// 	} else {
+	// 		op.forEach((fr) => {
+	// 			console.log(fr);
+	// 		});
+	// 	}
+	// let nm = () => {};
+</script>
+
+<!-- <button on:click={nm}>test</button> -->
+{#if em == null}
+	<h1>nulllllll!</h1>
+	<!-- {/if} -->
+{:else if namey[0].includes('.')}
+	<div class="test">
+		{#each eachStock[0] as stockPosition, i}
+			<div class="stock-false-div"><h1>{stockPosition}..</h1></div>
+		{/each}
+		<div class="out-of-stock-div">
+			<h1>THIS STOCK HAS BEEN EXHAUSTED!</h1>
+		</div>
+		{#each eachStock[3] as drug, i (drug.id)}
+			<div transition:slide class="test">
+				<main>
+					<div
+						class="destructured"
+						class:darkyAlphaMainAndDestructured={$lumpCompDarkProps.darkyAlphaMainAndDestructured}
+					>
+						<slot />
+						<div class="ps" class:darkyPs={$lumpCompDarkProps.darkyPs} id={drug.id}>
+							<p class="none">{drug.id}</p>
+							<p>{i + 1}</p>
+							<p>{drug.drugName}</p>
+							<p>₦{drug.price}</p>
+							<p>{drug.time}</p>
+							<p>{drug.date}</p>
+						</div>
+					</div>
+				</main>
+			</div>
+		{/each}
+		<!-- <button on:click={increment}>Increment</button> -->
+
+		<main
+			class="total-amount-container"
+			class:darkyTotalAmountContainer={$lumpCompDarkProps.darkyTotalAmountContainer}
+		>
+			<div class="p-container1">
+				{#each eachStock[1] as drugStoreAmountInStock (drugStoreAmountInStock)}
+					<div>
+						<!-- <{drugStoreAmountInStock} /> -->
+					</div>
+				{/each}
+				<div>
+					<!-- <  {totalAmountSoldInUnits} /> -->
+				</div>
+			</div>
+			<div class="p-container1 reddy">
+				<div>
+					<p class="p1" class:darkyP1P3={$lumpCompDarkProps.darkyP1P3}>Remaining:</p>
+					{#each eachStock[1] as drugStoreAmountInStock}
+						{#if totalAmountRemaining <= drugStoreAmountInStock / 3}
+							<p
+								class="drugName variable stock-remaining-red"
+								class:darkyP2P4={$lumpCompDarkProps.darkyP2P4}
+							>
+								{totalAmountRemaining}
+							</p>
+						{:else if totalAmountRemaining <= drugStoreAmountInStock / 1.5}
+							<p class="stock-remaining-yellow" class:darkyP2P4={$lumpCompDarkProps.darkyP2P4}>
+								{totalAmountRemaining}
+							</p>
+						{:else}
+							<p class="p2" class:darkyP2P4={$lumpCompDarkProps.darkyP2P4}>
+								{totalAmountRemaining}
+							</p>
+						{/if}
+					{/each}
+				</div>
+
+				<!-- <TotalAmountInNairaComp {totalAmountInNaira} /> -->
+			</div>
+		</main>
+
+		<!-- <button on:click={increment}>Increment</button> -->
+	</div>
+	<!-- <div transition:blur class={$submittedMap.get(dad) ? 'hide' : ''}> -->
+{:else if totalAmountRemaining <= 0}
+	<div class="test">
+		{#each eachStock[0] as stockPosition, i}
+			<div class="stock-false-div"><h1>{stockPosition}...</h1></div>
+		{/each}
+		<div class="out-of-stock-div">
+			<h1>THIS STOCK HAS BEEN EXHAUSTED!</h1>
+		</div>
+		{#each eachStock[3] as drug, i (drug.id)}
+			<!-- {#if i + 1 >= eachStock[1][0]}
+				<h1 use:nj>yeahhh</h1>
+			{:else} -->
+			<!-- else content here -->
+			<div transition:slide class="test">
+				<main>
+					<div
+						class="destructured"
+						class:darkyAlphaMainAndDestructured={$lumpCompDarkProps.darkyAlphaMainAndDestructured}
+					>
+						<slot />
+						<div class="ps" class:darkyPs={$lumpCompDarkProps.darkyPs} id={drug.id}>
+							<p class="none">{drug.id}</p>
+							<p use:enhace>{i + 1}</p>
+							<p use:nodeActionyf>{drug.drugName}</p>
+							<p>₦{drug.price}</p>
+							<p>{drug.time}</p>
+							<p>{drug.date}</p>
+							<!-- <RemoveBtn drugd={drug.id} onRemove={handleDrugRemoval} /> -->
+						</div>
+					</div>
+				</main>
+			</div>
+			<!-- {/if} -->
+		{/each}
+		<!-- <button on:click={increment}>Increment</button> -->
+
+		<main
+			class="total-amount-container"
+			class:darkyTotalAmountContainer={$lumpCompDarkProps.darkyTotalAmountContainer}
+		>
+			<div class="p-container1">
+				{#each eachStock[1] as drugStoreAmountInStock (drugStoreAmountInStock)}
+					<div>
+						<!-- <  {drugStoreAmountInStock} /> -->
+					</div>
+				{/each}
+				<div>
+					<!-- <  {totalAmountSoldInUnits} /> -->
+				</div>
+			</div>
+			<div class="p-container1 reddy">
+				<div>
+					<p class="p1" class:darkyP1P3={$lumpCompDarkProps.darkyP1P3}>Remaining:</p>
+					{#each eachStock[1] as drugStoreAmountInStock}
+						{#if totalAmountRemaining <= drugStoreAmountInStock / 3}
+							<p
+								class="drugName variable stock-remaining-red"
+								class:darkyP2P4={$lumpCompDarkProps.darkyP2P4}
+							>
+								{totalAmountRemaining}
+							</p>
+						{:else if totalAmountRemaining <= drugStoreAmountInStock / 1.5}
+							<p class="stock-remaining-yellow" class:darkyP2P4={$lumpCompDarkProps.darkyP2P4}>
+								{totalAmountRemaining}
+							</p>
+						{:else}
+							<p class="p2" class:darkyP2P4={$lumpCompDarkProps.darkyP2P4}>
+								{totalAmountRemaining}
+							</p>
+						{/if}
+					{/each}
+				</div>
+
+				<!-- <TotalAmountInNairaComp {totalAmountInNaira} /> -->
+			</div>
+		</main>
+	</div>
+
+	{#if tt}
+		{#if toggler}
+			<!-- <div transition:blur class="single-input-element-comp-wrapper"> -->
+			<!-- <div transition:scale class="reg-new-stock-btn">
+				<Button
+					class="restock-btn"
+					varButton="Register new stock for this brand"
+					onClick={clickHandler}
+				/>
+			</div> -->
+		{:else}
+			<!-- <div transition:blur> -->
+			<!-- 
+			<div transition:scale class="single-input-element-comp-wrapper">
+				<div class="sing-input one">
+					<SingleInputElementComp
+						class="single-input-element-comp-for-lump"
+						inputType="number"
+						bind:value={newStockAmount}
+						placeholder="Stk Amt..."
+					/>
+					<SingleInputElementComp
+						class="single-input-element-comp-for-lump"
+						inputType="number"
+						bind:value={newPriceTag}
+						placeholder="Price..."
+					/>
+				</div>
+				<div class="btns">
+					<Button class="restock-btn-cancel" varButton="Cancel" onClick={clickHandler} />
+
+					<ButtonRev
+						class="buttonrev-class-for-lump"
+						text="Submit"
+						isDisabled={isDisabledForStockAndNewPriceTagSubmitBtn}
+						onClick={pushNewStockArray}
+					/>
+				</div>
+			</div> -->
+		{/if}
+	{/if}
+
+	<!-- <button on:click={increment}>Increment</button> -->
+{:else}
+	<div class="yy">
+		{#each eachStock[0] as stockPosition, i}
+			<div class="stock-true-div"><h1>{stockPosition}...</h1></div>
+		{/each}
+		{#each eachStock[3] as drug, i (drug.id)}
+			<div transition:slide>
+				<main>
+					<div
+						class="destructured"
+						class:darkyAlphaMainAndDestructured={$lumpCompDarkProps.darkyAlphaMainAndDestructured}
+					>
+						<slot />
+						<div class="ps" class:darkyPs={$lumpCompDarkProps.darkyPs} id={drug.id}>
+							<p class="none">{drug.id}</p>
+							<p>{i + 1}</p>
+							<p>{drug.drugName}</p>
+							<p>₦{drug.price}</p>
+							<p>{drug.time}</p>
+							<p>{drug.date}</p>
+							<!-- <RemoveBtn drugd={drug.id} onRemove={handleDrugRemoval} /> -->
+						</div>
+					</div>
+				</main>
+			</div>
+		{/each}
+
+		<main
+			class="total-amount-container"
+			class:darkyTotalAmountContainer={$lumpCompDarkProps.darkyTotalAmountContainer}
+		>
+			<div class="p-container1">
+				{#each eachStock[1] as drugStoreAmountInStock (drugStoreAmountInStock)}
+					<div>
+						<!-- <  {drugStoreAmountInStock} /> -->
+					</div>
+				{/each}
+				<div>
+					<!-- <  {totalAmountSoldInUnits} /> -->
+				</div>
+			</div>
+			<div class="p-container1 reddy">
+				<div>
+					<p class="p1" class:darkyP1P3={$lumpCompDarkProps.darkyP1P3}>Remaining:</p>
+					{#each eachStock[1] as drugStoreAmountInStock}
+						{#if totalAmountRemaining <= drugStoreAmountInStock / 3}
+							<p
+								class="drugname variable stock-remaining-red"
+								class:darkyP2P4={$lumpCompDarkProps.darkyP2P4}
+							>
+								{totalAmountRemaining}
+							</p>
+						{:else if totalAmountRemaining <= drugStoreAmountInStock / 1.5}
+							<p class="stock-remaining-yellow" class:darkyP2P4={$lumpCompDarkProps.darkyP2P4}>
+								{totalAmountRemaining}
+							</p>
+						{:else}
+							<p class="p2" class:darkyP2P4={$lumpCompDarkProps.darkyP2P4}>
+								{totalAmountRemaining}
+							</p>
+						{/if}
+					{/each}
+				</div>
+
+				<!-- <TotalAmountInNairaComp {totalAmountInNaira} /> -->
+			</div>
+		</main>
+	</div>
+{/if}
+
+<style>
+	.seal {
+		border: solid 2px hsl(0, 50%, 45%, 1);
+	}
+	.hide {
+		display: none;
+	}
+	.reg-new-stock-btn {
+		display: flex;
+		margin: 0.5rem;
+		padding: 15px 0px !important;
+		align-items: center;
+		justify-content: space-evenly;
+	}
+	.sing-input {
+		display: flex;
+		/* margin-top: 0.5rem; */
+		align-items: center;
+		margin-top: 1rem;
+		width: 100%;
+		justify-content: space-evenly;
+	}
+	.btns {
+		width: 100%;
+		display: flex;
+		/* margin: 0.4rem; */
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
+		align-items: center;
+		justify-content: space-around;
+	}
+	.ss {
+		/* background: lightcoral !important; */
+	}
+	.hide {
+		display: none;
+		border-bottom: red solid 5px;
+		transition: all 3s;
+	}
+	:global(.restock-btn) {
+		background-color: hsla(230, 100%, 55%, 1) !important;
+
+		color: whitesmoke !important;
+
+		border: lightseagreen 3px solid !important;
+	}
+	:global(.restock-btn-cancel) {
+		background-color: hsla(230, 100%, 55%, 1) !important;
+
+		color: whitesmoke !important;
+		margin-bottom: 0.5rem !important;
+		/* margin: 0 !important;
+		margin-top: 0.5rem !important; */
+	}
+
+	:global(.buttonrev-class-for-lump) {
+		margin-bottom: 0.5rem;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		/* background: hsla(200, 50%, 98%, 1); */
+		background: hsla(200, 50%, 15%, 1);
+		/* overflow: scroll;
+		flex-wrap: nowrap; */
+
+		transition: all ease-in-out 0.2s;
+	}
+	.single-input-element-comp-wrapper {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		justify-content: center;
+		/* margin: 3rem 0; */
+		flex-direction: column;
+	}
+
+	:global(.single-input-element-comp-for-lump) {
+		width: 6vw;
+		border: none;
+		/* margin: 0 1rem; */
+
+		background: hsla(222, 50%, 90%, 1);
+		padding: 3.5px;
+		color: hsla(0, 0%, 20%, 1);
+		color-scheme: dark;
+		transition: all ease-in-out 0.2s;
+		border-radius: 5px;
+	}
+	.drug-label-title {
+		color: hsl(0, 50%, 45%, 1);
+	}
+	.out-of-stock-div {
+		/* background: hsl(0, 50%, 75%, 1);
+		color: hsl(0, 50%, 45%, 1);
+		border-radius: 5px;
+		padding: 0 6px;
+		margin: 0.7rem 0;
+		display: flex;
+		align-self: center;
+		justify-content: center; */
+	}
+	.stock-true-div {
+		width: fit-content;
+	}
+	.stock-true-div h1 {
+		background-color: hsla(120, 90%, 67%, 1);
+		font-size: 0.9rem;
+		padding: 3px;
+		color: hsla(120, 90%, 27%, 1);
+	}
+	h1 {
+		background: hsl(0, 50%, 75%, 1);
+		color: hsl(0, 50%, 45%, 1);
+		border-radius: 5px;
+		padding: 6px;
+		font-size: 1.2rem;
+		text-align: center;
+		margin: 0.7rem 0.4rem;
+		display: flex;
+		align-self: center;
+		justify-content: center;
+	}
+
+	.ps {
+		display: flex;
+		border-radius: 5px;
+		width: 100%;
+		align-items: center;
+		/* justify-content: flex-start; */
+		background: hsla(200, 50%, 94%, 1);
+		justify-content: center;
+		flex-wrap: wrap;
+		padding: 0;
+		margin: 0.2rem;
+		transition: all ease-in-out 0.2s;
+	}
+
+	.ps p {
+		background: hsla(222, 100%, 87%, 1);
+		border-radius: 5px;
+		margin: 3px 3px;
+		letter-spacing: 0.3px;
+		display: flex;
+		align-self: flex-start;
+		justify-self: flex-start;
+		align-content: center;
+		justify-content: center;
+		padding: 0px 0px !important;
+		/* width: fit-content; */
+		flex-wrap: wrap;
+		flex-grow: 1;
+		transition: all ease-in-out 0.2s;
+	}
+
+	.darkyPs p {
+		background: hsla(222, 100%, 5%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.darkyPs {
+		background: hsla(200, 50%, 5%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	main:last-child {
+		border: none;
+		transition: all ease-in-out 0.2s;
+	}
+	.p-container1 {
+		display: flex;
+		border-radius: 10px;
+		align-items: center;
+		/* justify-content: space-evenly !important; */
+		/* flex-wrap: wrap; */
+		/* padding-left: 6px !important; */
+	}
+	.p-container2 {
+		display: flex;
+		border-radius: 10px;
+		align-items: center;
+		/* padding-right: 6px !important; */
+		/* justify-content: end; */
+		transition: all ease-in-out 0.2s;
+	}
+
+	.p1 {
+		font-size: 0.7rem;
+		background: hsla(100, 50%, 70%, 1);
+		border-radius: 10px 0px 0 10px;
+		border-right: 2px solid hsla(100, 100%, 20%, 1);
+		display: flex;
+		/* width: 100% */
+		padding: 3px 4px;
+		margin: 0.2rem;
+		margin-right: 0;
+
+		transition: all ease-in-out 0.2s;
+	}
+	.stock-remaining-red {
+		background: hsl(0, 50%, 50%, 1);
+		/* background: hsla(100, 50%, 62%, 1); */
+		color: hsl(0, 0%, 96%, 1);
+		border-radius: 0 10px 10px 0;
+		margin: 0.2rem;
+		margin-left: 0;
+		font-size: 0.7rem;
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.stock-remaining-yellow {
+		background: hsl(51, 50%, 50%, 1);
+		/* background: hsla(100, 50%, 62%, 1); */
+
+		border-radius: 0 10px 10px 0;
+		margin: 0.2rem;
+		color: hsla(0, 0%, 20%, 1);
+		margin-left: 0;
+		font-size: 0.7rem;
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.p2 {
+		background: hsla(100, 50%, 62%, 1);
+		border-radius: 0 10px 10px 0;
+		margin: 0.2rem;
+		margin-left: 0;
+		font-size: 0.7rem;
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.p3 {
+		font-size: 0.7rem;
+		background: hsla(100, 50%, 70%, 1);
+		border-radius: 10px 0px 0 10px;
+		border-right: 2px solid hsla(100, 100%, 20%, 1);
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.p4 {
+		background: hsla(100, 50%, 62%, 1);
+		border-radius: 0 10px 10px 0;
+		font-size: 0.7rem;
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.darkyP1P3 {
+		background: hsla(100, 50%, 10%, 1);
+		border-right: 2px solid hsla(100, 100%, 10%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	.darkyP2P4 {
+		background: hsla(100, 40%, 10%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.total-amount-container {
+		border-bottom: 1px solid hsla(0, 0%, 70%, 1);
+		display: flex;
+		border-right: 2px solid hsla(222, 50%, 75%, 1);
+		margin: 0.4rem 0.4rem;
+		padding: 5px 0;
+		border-radius: 5px;
+		flex-wrap: wrap;
+		/* width: fit-content; */
+		/* height: 40vh; */
+		border-right: unset;
+		background: hsla(100, 50%, 85%, 1);
+		justify-content: space-around !important;
+		transition: all ease-in-out 0.2s;
+		/* flex-direction: row; */
+
+		/* margin: 0; */
+	}
+	.darkyTotalAmountContainer {
+		background: hsla(100, 50%, 5%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	.total-amount-container div {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 3px;
+		transition: all ease-in-out 0.2s;
+	}
+	.drug-title-for-out-of-stock {
+		color: hsl(0, 50%, 45%, 1);
+		background: hsl(0, 50%, 70%, 1);
+		padding: 0;
+		border: none;
+		margin-bottom: 0.2rem;
+		display: flex;
+		/* position: -webkit-sticky;
+		position: sticky;
+		top: 0px; */
+		z-index: 99999;
+		/* justify-content: center; */
+		/* width: 100%; */
+		/* background: hsla(222, 50%, 80%, 1); */
+		transition: all ease-in-out 0.2s;
+	}
+	.drug-title {
+		padding: 0;
+		border: none;
+		margin-bottom: 0.2rem;
+		display: flex;
+		/* position: -webkit-sticky;
+		position: sticky;
+		top: 0px; */
+		z-index: 99999;
+		/* justify-content: center; */
+		/* width: 100%; */
+		background: hsla(222, 50%, 80%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	.darkyDrugTitle {
+		background: hsla(222, 50%, 12%, 1);
+		width: 100%;
+		transition: all ease-in-out 0.2s;
+	}
+	h2 {
+		margin-bottom: 0;
+		color: hsla(0, 0%, 25%, 1);
+		padding: 2px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		font-size: 0.7rem;
+		border: unset;
+		letter-spacing: 1px;
+		font-weight: 600;
+		transition: all ease-in-out 0.2s;
+	}
+
+	.darkyH2AndP {
+		color: hsla(0, 0%, 70%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	.none {
+		display: none !important;
+	}
+
+	p {
+		margin: 0;
+		font-size: 0.65rem;
+		font-size: 0.8rem;
+		padding: 0 0px;
+		font-weight: 500;
+		color: hsla(0, 0%, 25%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.destructured-for-out-of-stock {
+		border-bottom: 1px solid hsla(0, 0%, 70%, 1);
+		display: flex;
+		align-items: center;
+		padding: 1px 0;
+		border-radius: 5px;
+		margin: 0.2rem 0.4rem;
+		background: hsl(0, 50%, 70%, 1);
+		justify-content: space-around;
+		/* background: hsla(222, 0%, 95.5%, 1); */
+
+		transition: all ease-in-out 0.2s;
+	}
+
+	.destructured {
+		border-bottom: 1px solid hsla(0, 0%, 70%, 1);
+		display: flex;
+		align-items: center;
+		padding: 1px 0;
+		border-radius: 5px;
+		margin: 0.2rem 0.4rem;
+		justify-content: space-around;
+		/* background: hsla(222, 0%, 95.5%, 1); */
+		background: hsla(200, 50%, 85%, 1);
+
+		transition: all ease-in-out 0.2s;
+	}
+
+	.drug-namey-out-of-stock {
+		background: hsla(222, 50%, 80%, 1);
+	}
+
+	.ps p:nth-child(2) {
+		background: hsla(222, 100%, 70%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.darkyAlphaMainAndDestructured {
+		background: hsla(200, 50%, 10%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.test {
+		/* height: 1000px; */
+	}
+	.for-line {
+		border: 3px solid hsla(0, 50%, 45%, 1);
+		margin: 1rem 0;
+	}
+	.restock-btn {
+		margin: 6rem;
+	}
+	.bob {
+		background: blue;
+	}
+	.yy {
+		/* background: pink; */
+	}
+	.hide {
+		display: none; /* background: red; */
+	}
+	.restock-btn-container {
+		/* background: red; */
+		/* position: absolute; */
+		/* margin-top: 2rem;
+		margin-bottom: 5rem; */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	:global(.restock-btn) {
+		background-color: hsla(230, 100%, 55%, 1) !important;
+
+		color: whitesmoke !important;
+		/* margin-bottom: 0.5rem !important; */
+		margin: 0 !important;
+		margin-top: 0.5rem !important;
+	}
+	:global(.restock-btn-cancel) {
+		background-color: hsla(230, 100%, 55%, 1) !important;
+
+		color: whitesmoke !important;
+		margin-bottom: 0.5rem !important;
+		/* margin: 0 !important;
+		margin-top: 0.5rem !important; */
+	}
+
+	:global(.buttonrev-class-for-lump) {
+		margin-bottom: 0.5rem;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		/* background: hsla(200, 50%, 98%, 1); */
+		background: hsla(200, 50%, 15%, 1);
+		/* overflow: scroll;
+		flex-wrap: nowrap; */
+
+		transition: all ease-in-out 0.2s;
+	}
+
+	:global(.single-input-element-comp-for-lump) {
+		width: 6vw;
+		border: none;
+		margin-bottom: 0.5rem;
+
+		background: hsla(222, 50%, 90%, 1);
+		padding: 3.5px;
+		color: hsla(0, 0%, 20%, 1);
+		color-scheme: dark;
+		transition: all ease-in-out 0.2s;
+		border-radius: 5px;
+	}
+	.drug-label-title {
+		color: hsl(0, 50%, 45%, 1);
+	}
+	.out-of-stock-div {
+		/* background: hsl(0, 50%, 75%, 1);
+		color: hsl(0, 50%, 45%, 1);
+		border-radius: 5px;
+		padding: 0 6px;
+		margin: 0.7rem 0;
+		display: flex;
+		align-self: center;
+		justify-content: center; */
+	}
+	.stock-true-div {
+		width: fit-content;
+	}
+	.stock-false-div {
+		width: fit-content;
+	}
+	.stock-true-div h1 {
+		background-color: hsla(120, 90%, 67%, 1);
+		font-size: 0.9rem;
+		padding: 0 2px;
+		color: hsla(120, 90%, 27%, 1);
+	}
+	.stock-false-div h1 {
+		background-color: hsla(120, 10%, 67%, 1);
+		font-size: 0.9rem;
+		padding: 0 2px;
+		color: hsla(120, 10%, 30%, 1);
+	}
+	h1 {
+		background: hsl(0, 50%, 75%, 1);
+		color: hsl(0, 50%, 45%, 1);
+		border-radius: 5px;
+		padding: 6px;
+		font-size: 1.2rem;
+		text-align: center;
+		margin: 0.7rem 0.4rem;
+		display: flex;
+		align-self: center;
+		justify-content: center;
+	}
+
+	.ps {
+		display: flex;
+		border-radius: 5px;
+		width: 100%;
+		align-items: center;
+		/* justify-content: flex-start; */
+		background: hsla(200, 50%, 94%, 1);
+		justify-content: center;
+		flex-wrap: wrap;
+		padding: 0;
+		margin: 0.2rem;
+		transition: all ease-in-out 0.2s;
+	}
+
+	.ps p {
+		background: hsla(222, 100%, 87%, 1);
+		border-radius: 5px;
+		margin: 3px 3px;
+		letter-spacing: 0.3px;
+		display: flex;
+		align-self: flex-start;
+		justify-self: flex-start;
+		align-content: center;
+		justify-content: center;
+		padding: 0px 0px !important;
+		/* width: fit-content; */
+		flex-wrap: wrap;
+		flex-grow: 1;
+		transition: all ease-in-out 0.2s;
+	}
+
+	.darkyPs p {
+		background: hsla(222, 100%, 5%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.darkyPs {
+		background: hsla(200, 50%, 5%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	main:last-child {
+		border: none;
+		transition: all ease-in-out 0.2s;
+	}
+	.p-container1 {
+		display: flex;
+		border-radius: 10px;
+		align-items: center;
+		/* justify-content: space-evenly !important; */
+		/* flex-wrap: wrap; */
+		/* padding-left: 6px !important; */
+	}
+	.p-container2 {
+		display: flex;
+		border-radius: 10px;
+		align-items: center;
+		/* padding-right: 6px !important; */
+		/* justify-content: end; */
+		transition: all ease-in-out 0.2s;
+	}
+
+	.p1 {
+		font-size: 0.7rem;
+		background: hsla(100, 50%, 70%, 1);
+		border-radius: 10px 0px 0 10px;
+		border-right: 2px solid hsla(100, 100%, 20%, 1);
+		display: flex;
+		/* width: 100% */
+		padding: 3px 4px;
+		margin: 0.2rem;
+		margin-right: 0;
+
+		transition: all ease-in-out 0.2s;
+	}
+	.stock-remaining-red {
+		background: hsl(0, 50%, 50%, 1);
+		/* background: hsla(100, 50%, 62%, 1); */
+		color: hsl(0, 0%, 96%, 1);
+		border-radius: 0 10px 10px 0;
+		margin: 0.2rem;
+		margin-left: 0;
+		font-size: 0.7rem;
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.stock-remaining-yellow {
+		background: hsl(51, 50%, 50%, 1);
+		/* background: hsla(100, 50%, 62%, 1); */
+
+		border-radius: 0 10px 10px 0;
+		margin: 0.2rem;
+		color: hsla(0, 0%, 20%, 1);
+		margin-left: 0;
+		font-size: 0.7rem;
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.p2 {
+		background: hsla(100, 50%, 62%, 1);
+		border-radius: 0 10px 10px 0;
+		margin: 0.2rem;
+		margin-left: 0;
+		font-size: 0.7rem;
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.p3 {
+		font-size: 0.7rem;
+		background: hsla(100, 50%, 70%, 1);
+		border-radius: 10px 0px 0 10px;
+		border-right: 2px solid hsla(100, 100%, 20%, 1);
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.p4 {
+		background: hsla(100, 50%, 62%, 1);
+		border-radius: 0 10px 10px 0;
+		font-size: 0.7rem;
+		padding: 3px 4px;
+		transition: all ease-in-out 0.2s;
+	}
+	.darkyP1P3 {
+		background: hsla(100, 50%, 10%, 1);
+		border-right: 2px solid hsla(100, 100%, 10%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	.darkyP2P4 {
+		background: hsla(100, 40%, 10%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.total-amount-container {
+		border-bottom: 1px solid hsla(0, 0%, 70%, 1);
+		display: flex;
+		border-right: 2px solid hsla(222, 50%, 75%, 1);
+		margin: 0.4rem 0.4rem;
+		padding: 5px 0;
+		border-radius: 5px;
+		flex-wrap: wrap;
+		/* width: fit-content; */
+		/* height: 40vh; */
+		border-right: unset;
+		background: hsla(100, 50%, 85%, 1);
+		justify-content: space-around !important;
+		transition: all ease-in-out 0.2s;
+		/* flex-direction: row; */
+
+		/* margin: 0; */
+	}
+	.darkyTotalAmountContainer {
+		background: hsla(100, 50%, 5%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	.total-amount-container div {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 3px;
+		transition: all ease-in-out 0.2s;
+	}
+	.drug-title-for-out-of-stock {
+		color: hsl(0, 50%, 45%, 1);
+		background: hsl(0, 50%, 70%, 1);
+		padding: 0;
+		border: none;
+		margin-bottom: 0.2rem;
+		display: flex;
+		/* position: -webkit-sticky;
+		position: sticky;
+		top: 0px; */
+		z-index: -12;
+		/* justify-content: center; */
+		/* width: 100%; */
+		/* background: hsla(222, 50%, 80%, 1); */
+		transition: all ease-in-out 0.2s;
+	}
+	.drug-title {
+		padding: 0;
+		border: none;
+		margin-bottom: 0.2rem;
+		display: flex;
+		/* position: -webkit-sticky;
+		position: sticky;
+		top: 0px;
+		z-index: -12; */
+		/* justify-content: center; */
+		/* width: 100%; */
+		background: hsla(222, 50%, 80%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	.darkyDrugTitle {
+		background: hsla(222, 50%, 12%, 1);
+		width: 100%;
+		transition: all ease-in-out 0.2s;
+	}
+	h2 {
+		margin-bottom: 0;
+		color: hsla(0, 0%, 25%, 1);
+		padding: 2px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		font-size: 0.7rem;
+		border: unset;
+		letter-spacing: 1px;
+		font-weight: 600;
+		transition: all ease-in-out 0.2s;
+	}
+
+	.darkyH2AndP {
+		color: hsla(0, 0%, 70%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+
+	.none {
+		display: none !important;
+	}
+
+	p {
+		margin: 0;
+		font-size: 0.65rem;
+		font-size: 0.8rem;
+		padding: 0 0px;
+		font-weight: 500;
+		color: hsla(0, 0%, 25%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.destructured-for-out-of-stock {
+		border-bottom: 1px solid hsla(0, 0%, 70%, 1);
+		display: flex;
+		align-items: center;
+		padding: 1px 0;
+		border-radius: 5px;
+		margin: 0.2rem 0.4rem;
+		background: hsl(0, 50%, 70%, 1);
+		justify-content: space-around;
+		/* background: hsla(222, 0%, 95.5%, 1); */
+
+		transition: all ease-in-out 0.2s;
+	}
+
+	.destructured {
+		border-bottom: 1px solid hsla(0, 0%, 70%, 1);
+		display: flex;
+		align-items: center;
+		padding: 1px 0;
+		border-radius: 5px;
+		margin: 0.2rem 0.4rem;
+		justify-content: space-around;
+		/* background: hsla(222, 0%, 95.5%, 1); */
+		background: hsla(200, 50%, 85%, 1);
+
+		transition: all ease-in-out 0.2s;
+	}
+
+	.drug-namey-out-of-stock {
+		background: hsla(222, 50%, 80%, 1);
+	}
+
+	.ps p:nth-child(2) {
+		background: hsla(222, 100%, 70%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.darkyAlphaMainAndDestructured {
+		background: hsla(200, 50%, 10%, 1);
+		transition: all ease-in-out 0.2s;
+	}
+	.test {
+		/* height: 1000px; */
+		border: 2px hsla(0, 50%, 45%, 1) solid;
+		border: 2px hsla(0, 50%, 45%, 1) solid;
+	}
+
+	.for-line {
+		border: 3px solid hsla(0, 50%, 45%, 1);
+		margin: 1rem 0;
+	}
+</style>
+
+
+
+
+
+
+
+////////////////////////////FROM STORE.JS(DEPRECATED; KEPT FOR REFERENCE)///////////////////////////////////
+export const getTodos = async () => {
+
+
+    const { data, error } = await supabase.from('drugs_main').select('*');
+    // console.log(data)
+    if (error) {
+        console.error(error);
+    } else {
+        transformedData = data.map(row => [
+            [row.full_brand_name],
+            [row.shortened_brand_name],
+            [row.typed_name],
+            [row.unit_name],
+            [row.amount_in_stock],
+            [] // initialize the fourth inner array to an empty array
+        ]);
+    }
+
+    const { data: salesData, error: salesError } = await supabase
+        .from('drug_sales_input').select('*')
+
+    // console.log(salesData, data, salesError, error)
+
+
+    if (salesError) {
+        console.error(salesError);
+        return
+    } else {
+
+        try {
+
+            // Create an empty array to store the grouped objects
+            const groupedObjects = [];
+
+            // Group the objects based on ref_unit_name property
+            salesData.forEach(obj => {
+
+                const { sales_input } = obj
+                console.log(sales_input)
+                // Parse the sales_input as JSON
+                const parsedSalesInput = JSON.parse(sales_input);
+                console.log(parsedSalesInput);
+                console.log(obj.sales_input);
+
+                // Update the salesData object with the parsed sales_input
+                obj.sales_input = parsedSalesInput;
+                console.log(obj.sales_input);
+
+                const unitName = obj.ref_unit_name;
+                const group = groupedObjects.find(group => group.unitName === unitName);
+                if (group) {
+                    group.objects.push(obj);
+                } else {
+                    groupedObjects.push({
+                        unitName: unitName,
+                        objects: [obj]
+                    });
+                }
+                console.log(groupedObjects)
+                transformedArray = groupedObjects.map(group => {
+                    console.log(group)
+                    const subgroups = group.objects.reduce((acc, obj) => {
+                        const position = obj.last_stock_position;
+                        const stockAmount = obj.last_stock_stock_amount;
+                        const priceTag = obj.last_stock_price_tag;
+                        if (!acc[position]) {
+                            acc[position] = [[position], [stockAmount], [priceTag], [obj]]; // Create a new array with position as the first element
+                        } else {
+                            acc[position][3].push(obj);
+
+                        }
+                        return acc;
+                    }, {});
+                    console.log(subgroups)
+                    return [...Object.values(subgroups)];
+                });
+                console.log(transformedArray);
+
+
+            });
+
+            console.log(groupedObjects)
+        } catch (error) {
+            console.error(`Error parsing sales input: ${error}`);
+        }
+    }
+    console.log(transformedArray);
+
+    const standaloneArrays = transformedArray.flatMap(subarray => subarray);
+
+    console.log(standaloneArrays);
+    standaloneArrays.forEach((tran) => {
+        const [[a], [b], [c], restObj] = tran
+        const [{ sales_input }] = restObj;
+        const { drugName } = sales_input
+
+        // console.log(drugName)
+        // console.log(sales_input)
+        // console.log(b)
+        // console.log(c)
+        // console.log(restObj)
+        // console.log(tran)
+
+        const bindex = transformedData.findIndex(drugDataRow => drugDataRow[3][0] === drugName)
+
+        let modifiedArray = tran.map((item, index) => {
+            if (index === 3) {
+                return item.map((obj) => obj.sales_input);
+            }
+            return item;
+        });
+
+        console.log(modifiedArray);
+
+        transformedData[bindex][5].push(modifiedArray);
+        console.log(tran)
+        console.log(transformedData)
+    })
+    drugStore.set(transformedData);
+    console.log(transformedData)
+
+
+    const transformedDataForProps = data.map(row =>
+        [row.typed_name, row.alt_name, row.unit_name, row.price]
+    );
+    drugProperties.set(transformedDataForProps);
+    drugProperties.subscribe(value => {
+        // console.log('drugProperties updated:', value);
+    });
+    drugStore.subscribe(value => {
+        console.log(value)        // console.log('drugProperties updated:', value);
+    });
+    // isLoaded = true
+};
+// getTodos();
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    drugStore = writable([])
+    drugProperties = writable([])
+    // drugStore = drugStore
+    // drugProperties = drugProperties
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+  [['fullbrandnamehydraXXXXXXXXXXXXXX2'], ['q'], ['q'], ['q'], [9], [
+        [['1st stock'], [4], [13], [{
+            id: 656,
+            drugName: 'q',
+            price: 1,
+            time: 1
+        },
+        {
+            id: 938,
+            drugName: 'q',
+            price: 2,
+            time: 2
+        }],
+        ],
+        [['2nd stock'], [6], [33], [
+            {
+                id: 277,
+                drugName: 'q',
+                price: 11,
+                time: 11
+            },
+            {
+                id: 535,
+                drugName: 'q',
+                price: 22,
+                time: 22
+            }]],
+
+        [['3rd stock'], [5], [133], [{
+            id: 121,
+            drugName: 'q',
+            price: 111,
+            time: 111
+        }, {
+            id: 499,
+            drugName: 'q',
+            price: 222,
+            time: 222
+        }, {
+            id: 245,
+            drugName: 'q',
+            price: 333,
+            time: 333
+        }
+        ]
+        ]]],
+    [['fullbrandnamehydraParacetamol2'], ['a'], ['a'], ['a'], [9], [
+        [['1st stock'], [4], [13], [{
+            id: 333,
+            drugName: 'a',
+            price: 1,
+            time: 1
+        },
+        {
+            id: 199,
+            drugName: 'a',
+            price: 2,
+            time: 2
+        }],
+        ],
+        [['2nd stock'], [5], [33], [
+            {
+                id: 987,
+                drugName: 'a',
+                price: 11,
+                time: 11
+            },
+            {
+                id: 844,
+                drugName: 'a',
+                price: 22,
+                time: 22
+            }]],
+
+        [['3rd stock'], [9], [133], [{
+            id: 998,
+            drugName: 'a',
+            price: 111,
+            time: 111
+        }, {
+            id: 645,
+            drugName: 'a',
+            price: 222,
+            time: 222
+        }, {
+            id: 433,
+            drugName: 'a',
+            price: 333,
+            time: 333
+        }
+        ]
+        ]]],
+    [['fullbrandnamehydraXXXXXXXXXXXXXX2'], ['z'], ['z'], ['z'], [9], [
+        // [['1st stock'], [4], [13], [{
+        //     id: 656,
+        //     drugName: 'z',
+        //     price: 1,
+        //     time: 1
+        // },
+        // {
+        //     id: 938,
+        //     drugName: 'z',
+        //     price: 2,
+        //     time: 2
+        // }],
+        // ],
+
+
+    ]],
+]);
+// console.log(drugSSstore)
+export let drugPropertbhies = writable([
+    ['q', 'q', 'q', 500],
+    ['a', 'a', 'a', 500],
+    ['z', 'z', 'z', 500],
+
+]);
+
+let transformedData = []
+export let drugStoreForSpecificDate = writable([]);
+// [['fullbrandnamehydraXXXXXXXXXXXXXX2'], ['a'], ['a'], ['a'], [6], [
+//     [[6],
+
+//     {
+//         id: 122,
+//         drugName: 'a',
+//         price: 500,
+//         time: 34
+//     },
+
+//     {
+//         id: 122,
+//         drugName: 'a',
+//         price: 500,
+//         time: 34
+//     }
+//     ],
+//     [[100],
+
+//     {
+//         id: 122,
+//         drugName: 'a',
+//         price: 500,
+//         time: 34
+//     }
+//     ],
+//     // [
+
+//     //     {
+//     //         id: 122,
+//     //         drugName: 'a',
+//     //         price: 500,
+//     //         time: 34
+//     //     }
+//     // ]
+// ], []],
+// [['fullbrandnamehydraXXXXXXXXXXXXXX2'], ['z'], ['z'], ['z'], [6], [
+
+//     [[900],
+
+//     {
+//         id: 5444,
+//         drugName: 'z',
+//         price: 500,
+//         time: 34
+//     }
+//     ],
+//     [[3446],
+
+//     {
+//         id: 5444,
+//         drugName: 'z',
+//         price: 500,
+//         time: 34
+//     }
+//     ]
+// ], []],
+const today = new Date();
+const yesterday = new Date(today.getTime() - (24 * 60 * 60 * 1000)); // subtract 1 day in milliseconds
+console.log(yesterday)
+let transformedArray = []
+
+
+export const drjugStore = writable([
+
+    [['GSK ANTACID SUSPENSION'], ['GSK ANTACID SUSPENSION'], ['gsk'], [
+        // {
+        //     id: 444,
+        //     drugName: 'gsk',
+        //     price: 500,
+        //     time: 34
+        // },
+        // {
+        //     id: 4404,
+        //     drugName: 'gsk',
+        //     price: 500,
+        //     time: 34
+        // }
+    ]],
+    [['fullbrandnamehydraXXXXXXXXXXXXXX2'], ['HYDRAC P'], ['hydrac'], []],
+    [['fullbrandname3'], ['COUGH EXPECTORANT'], ['cough'], []],
+    [['fullbrandname4'], ['LUMEFANTRINE 500MG'], ['lume'], []],
+    [['fullbrandname5'], ['WINART FORTE1'], ['win1'], []],
+    [['fullbrandname'], ['WINART FORTE2'], ['win2'], []],
+    [['fullbrandname'], ['WINART FORTE3'], ['win3'], []],
+    [['fullbrandname'], ['WINART FORTE4'], ['win4'], []],
+    [['fullbrandname'], ['WINART FORTE5'], ['win5'], []],
+    [['fullbrandname'], ['WINART FORTE6'], ['win6'], []],
+    [['fullbrandname'], ['WINART FORTE7'], ['win7'], []],
+])
+
+export const drugPropkerties = writable([
+    ['gsk', 'gsk', 'gsk antacid suspension', 500],
+    ['hydrac', 'hy', 'Hydrac P', 300],
+    ['cough', 'co', 'coughy', 900],
+    ['lume', 'emt', 'lumefantrine', 700],
+    ['winart1', 'win1', 'winartZZZZZZZZZZZZ forte1', 400],
+    ['winart2', 'win2', 'winart forte2', 400],
+    ['winart3', 'win3', 'winart forte3', 400],
+    ['winart4', 'win4', 'winart forte4', 400],
+    ['winart5', 'win5', 'winart forte5', 400],
+    ['winart6', 'win6', 'winart forte6', 400],
+    ['winart7', 'win7', 'winart forte7', 400],
+]);
+
+// console.log(drugStaore.get())
+// console.log(drugPmroperties[0][0])
+////////////////////////////FROM STORE.JS(DEPRECATED; KEPT FOR REFERENCE)///////////////////////////////////

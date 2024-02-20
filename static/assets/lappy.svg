@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1920" height="1050" viewBox="0 0 1920 1050" xml:space="preserve">
+<desc>Created with Fabric.js 3.5.0</desc>
+<defs>
+</defs>
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<g transform="matrix(0.7344 0 0 0.7344 959.9473 524.9712)" id="49633">
+<g style="">
+		<g transform="matrix(1 0 0 1 0 430.83)" id="984263">
+	<image style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; is-custom-font: none; font-file-url: none; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" xlink:href="https://cdn.pixelied.com/mockups-v2/005a9509-f298-4fde-a7de-b1198187d315/shadow.png" x="-1307" y="-284" width="2614" height="568"/>
+</g>
+		<g transform="matrix(1 0 0 1 82 -100.33)" id="283299">
+	<image style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; is-custom-font: none; font-file-url: none; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" xlink:href="https://cdn.pixelied.com/mockups-v2/005a9509-f298-4fde-a7de-b1198187d315/mainbase.png" x="-960" y="-614.5" width="1920" height="1229"/>
+</g>
+</g>
+</g>
+<g transform="matrix(1 0 0 1 9600.5 5250.5)">
+<pattern id="SVGID_19" x="0" y="0" width="0.15625" height="0.14285714285714285">
+<image x="0" y="0" width="300" height="150" xlink:href="https://pixelied.com/assets/img/svg/px-watermark.svg"/>
+</pattern>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; is-custom-font: none; font-file-url: none; fill: url(#SVGID_19); fill-rule: nonzero; opacity: 0.5;" x="-960" y="-525" rx="0" ry="0" width="1920" height="1050"/>
+</g>
+</svg>
