@@ -1,4 +1,5 @@
-import { supabase } from "$lib/supabaseClient";
+// import { supabase } from "$lib/supabaseClient";
+import { supabase } from "@supabase/ssr";
 import { drugStore, drugProperties } from "../../stores";
 import { fail, redirect, json } from '@sveltejs/kit'
 

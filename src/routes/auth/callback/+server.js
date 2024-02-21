@@ -1,13 +1,13 @@
 // // src/routes/auth/callback/+server.js
-// import { redirect } from '@sveltejs/kit'
+import { redirect } from '@sveltejs/kit'
 
-// export const GET = async ({ url, locals: { supabase } }) => {
-//     const code = url.searchParams.get('code')
+export const GET = async ({ url, locals: { supabase } }) => {
+    const code = url.searchParams.get('code')
 
-//     if (code) {
-//         await supabase.auth.exchangeCodeForSession(code)
-//     }
+    if (code) {
+        await supabase.auth.exchangeCodeForSession(code)
+    }
 
-//     throw redirect(303, '/app-main')
-// }
+    throw redirect(303, '/app-main')
+}
 

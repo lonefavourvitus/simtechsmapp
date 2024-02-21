@@ -1,5 +1,6 @@
 
-import { supabase, getServiceSupabase } from "$lib/supabaseClient";
+// import { supabase, getServiceSupabase } from "$lib/supabaseClient";
+import { supabase, getServiceSupabase } from "@supabase/ssr";
 import { json } from '@sveltejs/kit';
 
 let transformedData = []
@@ -179,7 +180,7 @@ export async function POST({ request }) {
 
 
         const transformedDataForProps = data.map(row =>
-        [row.unit_name]
+            [row.unit_name]
         );
 
 
