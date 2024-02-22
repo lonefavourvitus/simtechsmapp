@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import { afterUpdate, onMount, onDestroy } from 'svelte';
@@ -10,9 +10,12 @@
 		showPrintBtn,
 		multiDrugEntriesArray
 	} from '../stores';
-
+	// @ts-ignore
 	export let multiEntries = [];
+	// @ts-ignore
+
 	export let receiptPrices = [];
+	// @ts-ignore
 
 	let formattedReceiptPrices = [];
 
@@ -34,6 +37,7 @@
 	$: console.log(totalAmount);
 
 	$: console.log($receiptPricesFromStore);
+	// @ts-ignore
 
 	console.log(formattedReceiptPrices);
 
@@ -143,8 +147,6 @@
 	</div>
 </div>
 
-<!-- {/if}
-{/if} -->
 <style>
 	h1 {
 		font-size: 0.8rem;

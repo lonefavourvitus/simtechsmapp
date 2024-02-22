@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import { supabase } from '$lib/supabaseClient';
@@ -219,7 +219,7 @@
 
 				let newDrugInput = {
 					isMulti: 'testy',
-					id: crypto.randomUUID();,
+					id: crypto.randomUUID(),
 					drugName,
 					price: lastStock[2][0],
 					date: today,
