@@ -10,7 +10,6 @@
 	import Testimonials from '$lib/Testimonials.svelte';
 	import IOWrapperComp from '$lib/IOWrapperComp.svelte';
 	import MarqueeComp from '$lib/MarqueeComp.svelte';
-	import MarqueeS from '$lib/MarqueeS.svelte';
 	import Stats from '$lib/Stats.svelte';
 </script>
 
