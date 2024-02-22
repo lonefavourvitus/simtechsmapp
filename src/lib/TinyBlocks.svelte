@@ -2,7 +2,7 @@
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import { supabase } from '$lib/supabaseClient';
 	import { get } from 'svelte/store';
-	import { v4 as uuidv4 } from 'uuid';
+	// import { v4 as uuidv4 } from 'uuid';
 	import {
 		multiDrugEntriesArray,
 		formattedMultiDrugEntriesArray,
@@ -217,7 +217,7 @@
 
 				let newDrugInput = {
 					isMulti: 'testy',
-					id: uuidv4(),
+					id: crypto.randomUUID();,
 					drugName,
 					price: lastStock[2][0],
 					date: today,
