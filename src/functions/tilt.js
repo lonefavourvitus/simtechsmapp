@@ -3,11 +3,13 @@ function getSettings(settings = {}) {
 }
 
 const TRANSITION_MS = 300;
+// @ts-ignore
 
 export default function tilt(node, settingsObj) {
     const { width, height, left, top } = node.getBoundingClientRect();
     let settings = getSettings(settingsObj);
     let reverse = settings.reverse ? -1 : 1;
+    // @ts-ignore
 
     function onMouseMove(e) {
         const percX = (e.clientX - left) / width;
@@ -23,9 +25,12 @@ export default function tilt(node, settingsObj) {
             `translateY(${tiltX}px) ` +
             `scale3d(${Array(3).fill(scale).join(', ')})`;
     }
+    // @ts-ignore
 
     let transitionId;
     function smoothTransition() {
+        // @ts-ignore
+
         clearTimeout(transitionId);
         node.style.willChange = 'transform';
         node.style.transition = `${TRANSITION_MS}ms`;
@@ -55,6 +60,8 @@ export default function tilt(node, settingsObj) {
             node.removeEventListener('mouseleave', onMouseLeave);
             node.removeEventListener('mouseleave', onMouseEnter);
         },
+        // @ts-ignore
+
         update(settingsObj) {
             settings = getSettings(settingsObj);
             reverse = settings.reverse ? -1 : 1;
