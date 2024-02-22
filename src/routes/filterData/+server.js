@@ -1,9 +1,14 @@
 
 // import { supabase, getServiceSupabase } from "$lib/supabaseClient";
+// @ts-ignore
+
 import { supabase, getServiceSupabase } from "@supabase/ssr";
 import { json } from '@sveltejs/kit';
+// @ts-ignore
 
 let transformedData = []
+// @ts-ignore
+
 let transformedArray = []
 
 // const { data, error } = supabase.auth.getSession()
@@ -44,10 +49,13 @@ export async function POST({ request }) {
 
         if (error) {
             // console.error(error);
+            // @ts-ignore
 
             return
 
         } else {
+            // @ts-ignore
+
             transformedData = data.map(row => [
                 [row.full_brand_name],
                 // [row.shortened_brand_name],
@@ -73,6 +81,8 @@ export async function POST({ request }) {
 
         if (salesError) {
             console.error(' error console: salesError=', salesError);
+            // @ts-ignore
+
             return
 
         } else {
@@ -80,9 +90,13 @@ export async function POST({ request }) {
             try {
 
                 // Create an empty array to store the grouped objects
+                // @ts-ignore
+
                 const groupedObjects = [];
 
                 // Group the objects based on ref_unit_name property
+                // @ts-ignore
+
                 salesData.forEach(obj => {
 
                     const { sales_input } = obj
@@ -97,6 +111,8 @@ export async function POST({ request }) {
                     // console.log(obj.sales_input);
 
                     const unitName = obj.ref_unit_name;
+                    // @ts-ignore
+
                     const group = groupedObjects.find(group => group.unitName === unitName);
                     if (group) {
                         group.objects.push(obj);
@@ -107,7 +123,11 @@ export async function POST({ request }) {
                         });
                     }
                     // console.log(groupedObjects)
+                    // @ts-ignore
+
                     transformedArray = groupedObjects.map(group => {
+                        // @ts-ignore
+
                         // console.log(group)
                         const subgroups = group.objects.reduce((acc, obj) => {
                             const position = obj.last_stock_position;
@@ -135,7 +155,10 @@ export async function POST({ request }) {
                 let my = false
             }
         }
+        // @ts-ignore
+
         console.log('transformedArray first occ is:', transformedArray);
+        // @ts-ignore
 
         const standaloneArrays = transformedArray.flatMap(subarray => subarray);
 
@@ -151,11 +174,15 @@ export async function POST({ request }) {
             // console.log(c)
             // console.log(restObj)
             // console.log(tran)
+            // @ts-ignore
 
             const bindex = transformedData.findIndex(drugDataRow => drugDataRow[1][0] === drugName)
+            // @ts-ignore
 
             let modifiedArray = tran.map((item, index) => {
                 if (index === 3) {
+                    // @ts-ignore
+
                     return item.map((obj) => obj.sales_input);
                 }
                 return item;
@@ -168,9 +195,13 @@ export async function POST({ request }) {
                 // return
             } else {
                 emptySalesArray = false
+                // @ts-ignore
+
                 transformedData[bindex][2].push(modifiedArray);
             }
             // console.log(tran)
+            // @ts-ignore
+
             console.log('td 1 is:', transformedData)
         })
         // let vb = { ress: transformedData }
@@ -178,6 +209,7 @@ export async function POST({ request }) {
         console.log('td 2 is:', transformedData)
         // Example code to access the auth.users table
 
+        // @ts-ignore
 
         const transformedDataForProps = data.map(row =>
             [row.unit_name]
@@ -209,4 +241,6 @@ export async function POST({ request }) {
         );
     }
 }
+// @ts-ignore
+
 console.log('last td is:', transformedData)

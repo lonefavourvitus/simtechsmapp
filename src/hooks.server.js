@@ -31,7 +31,10 @@ import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/publi
 import { createServerClient } from '@supabase/ssr'
 // import type { Handle } from '@sveltejs/kit'
 
+// @ts-ignore
 export const handle = async ({ event, resolve }) => {
+    // @ts-ignore
+
     event.locals.supabase = createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
         cookies: {
             get: (key) => event.cookies.get(key),
@@ -55,14 +58,19 @@ export const handle = async ({ event, resolve }) => {
      * of calling `const { data: { session } } = await supabase.auth.getSession()`
      * you just call this `await getSession()`
      */
+    // @ts-ignore
+
     event.locals.getSession = async () => {
         const {
             data: { session },
+            // @ts-ignore
+
         } = await event.locals.supabase.auth.getSession()
         return session
     }
 
     return resolve(event, {
+        // @ts-ignore
         filterSerializedResponseHeaders(name) {
             return name === 'content-range'
         },

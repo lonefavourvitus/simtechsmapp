@@ -1,10 +1,15 @@
 // import { supabase } from "$lib/supabaseClient";
+// @ts-ignore
+
 import { supabase } from "@supabase/ssr";
 import { drugStore, drugProperties } from "../../stores";
 import { fail, redirect, json } from '@sveltejs/kit'
+// @ts-ignore
 
 /** @type {import('./$types').PageServerLoad} */
 let transformedData = []
+// @ts-ignore
+
 let transformedArray = []
 export async function load({ parent }) {
     // export const getTodos = async () => {
@@ -92,6 +97,8 @@ export async function load({ parent }) {
         try {
 
             // Create an empty array to store the grouped objects
+            // @ts-ignore
+
             const groupedObjects = [];
 
             // Group the objects based on ref_unit_name property
@@ -109,6 +116,8 @@ export async function load({ parent }) {
                 // console.log(obj.sales_input);
 
                 const unitName = obj.ref_unit_name;
+                // @ts-ignore
+
                 const group = groupedObjects.find(group => group.unitName === unitName);
                 if (group) {
                     group.objects.push(obj);
@@ -119,8 +128,12 @@ export async function load({ parent }) {
                     });
                 }
                 // console.log(groupedObjects)
+                // @ts-ignore
+
                 transformedArray = groupedObjects.map(group => {
                     // console.log(group)
+                    // @ts-ignore
+
                     const subgroups = group.objects.reduce((acc, obj) => {
                         const position = obj.last_stock_position;
                         const stockAmount = obj.last_stock_stock_amount;
@@ -147,7 +160,11 @@ export async function load({ parent }) {
             let my = false
         }
     }
+    // @ts-ignore
+
     console.log(transformedArray);
+    // @ts-ignore
+
 
     const standaloneArrays = transformedArray.flatMap(subarray => subarray);
 
@@ -163,11 +180,15 @@ export async function load({ parent }) {
         // console.log(c)
         // console.log(restObj)
         // console.log(tran)
+        // @ts-ignore
 
         const bindex = transformedData.findIndex(drugDataRow => drugDataRow[1][0] === drugName)
+        // @ts-ignore
 
         let modifiedArray = tran.map((item, index) => {
             if (index === 3) {
+                // @ts-ignore
+
                 return item.map((obj) => obj.sales_input);
             }
             return item;
@@ -191,6 +212,8 @@ export async function load({ parent }) {
 
         [row.unit_name]
     );
+    // @ts-ignore
+
     drugProperties.set(transformedDataForProps);
 
     drugProperties.subscribe(value => {

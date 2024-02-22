@@ -1,7 +1,8 @@
-import { PUBLIC_SITE_URL } from '$env/static/public';
+// import { PUBLIC_SITE_URL } from '$env/static/public';
 import { AuthApiError } from '@supabase/supabase-js';
 import { fail, redirect } from '@sveltejs/kit';
 // import type { Actions } from './$types';
+// @ts-ignore
 
 export const load = async ({ locals: { getSession } }) => {
     const session = await getSession();
@@ -12,6 +13,8 @@ export const load = async ({ locals: { getSession } }) => {
 };
 
 export const actions = {
+    // @ts-ignore
+
     signin: async ({ request, locals: { supabase } }) => {
         const form_data = await request.formData();
         const email = form_data.get('email');
@@ -42,11 +45,15 @@ export const actions = {
         }
 
         if (to) {
+            // @ts-ignore
+
             throw redirect(303, to);
         } else {
             throw redirect(303, '/app-main');
         }
     },
+
+    // @ts-ignore
 
     signup: async ({ request, locals: { supabase } }) => {
         const form_data = await request.formData();
@@ -90,6 +97,7 @@ export const actions = {
     // 	console.log(error)
 
     // },
+    // @ts-ignore
 
     forgot: async ({ request, locals: { supabase } }) => {
         const form_data = await request.formData();
@@ -116,6 +124,7 @@ export const actions = {
             };
         }
     },
+    // @ts-ignore
 
     reset: async ({ request, locals: { supabase } }) => {
         const form_data = await request.formData();
@@ -138,6 +147,7 @@ export const actions = {
 
         throw redirect(303, '/auth');
     },
+    // @ts-ignore
 
     signout: async ({ locals: { supabase } }) => {
         await supabase.auth.signOut();

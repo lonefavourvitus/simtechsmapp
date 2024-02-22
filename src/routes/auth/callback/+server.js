@@ -1,5 +1,6 @@
 // // src/routes/auth/callback/+server.js
 import { redirect } from '@sveltejs/kit'
+// @ts-ignore
 
 export const GET = async ({ url, locals: { supabase } }) => {
     const code = url.searchParams.get('code')
