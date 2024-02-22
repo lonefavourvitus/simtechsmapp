@@ -3,7 +3,7 @@
 // @ts-ignore
 
 import { supabase, getServiceSupabase } from "@supabase/ssr";
-import { json } from '@sveltejs/kit';
+// import { json } from '@sveltejs/kit';
 // @ts-ignore
 
 let transformedData = []

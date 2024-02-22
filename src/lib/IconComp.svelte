@@ -1,3 +1,6 @@
+<script>
+	
+</script>
 <div class="svg-container" on:click on:keydown={() => {}}>
 	<slot />
 </div>
