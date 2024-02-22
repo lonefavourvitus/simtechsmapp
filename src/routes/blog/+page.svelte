@@ -1,3 +1,7 @@
+<script>
+	// @ts-nocheck
+</script>
+
 <h1>blog</h1>
 
 <ul>

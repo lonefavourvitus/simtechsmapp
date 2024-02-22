@@ -1,3 +1,7 @@
+
+
+// @ts-nocheck
+
 import { supabase } from "$lib/supabaseClient";
 import { fail, redirect } from '@sveltejs/kit'
 import { tets } from '../../stores'

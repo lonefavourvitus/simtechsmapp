@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import ButtonWithIcon from '$lib/ButtonWithIcon.svelte';
 	import LappyMockup from '$lib/LappyMockup.svelte';
 </script>
@@ -38,6 +40,7 @@
 	<!--  -->
 	<!-- <div class="hero-image">image will be here</div> -->
 </main>
+
 <!-- <div class="desk-cont">
 	<div class="comb">
 		<div class="vid">

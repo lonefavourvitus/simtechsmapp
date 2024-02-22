@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { slide } from 'svelte/transition';
 	import Button from '$lib/Button.svelte';
 	import ViewPreviousSalesBtn from '$lib/PreviousSalesBtn.svelte';

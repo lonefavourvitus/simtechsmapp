@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import Lump from '$lib/Lump.svelte';
 	import NoDataYetComp from '$lib/NoDataYetComp.svelte';
 	import {

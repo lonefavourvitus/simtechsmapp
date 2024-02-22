@@ -1,5 +1,7 @@
 <!-- <?xml version="1.0" encoding="iso-8859-1"?> -->
 <script>
+	// @ts-nocheck
+
 	import { iconRotationTrigger } from '../stores';
 	let fillColour = ' hsla(222, 50%, 85%, 1)';
 

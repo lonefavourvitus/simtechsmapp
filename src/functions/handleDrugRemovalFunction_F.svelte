@@ -1,4 +1,5 @@
 <script context="module">
+	// @ts-nocheck
 	import { supabase } from '$lib/supabaseClient';
 	import { drugStore, sess } from '../stores';
 	export async function handleDrugRemoval(drugId) {

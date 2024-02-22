@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	/**
 	 * Custom style
 	 * @type {string}

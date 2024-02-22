@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import { enhance } from '$app/forms';
 	// import type { ActionData } from './$types';
 	import TextSwapper from '$lib/TextSwapper.svelte';

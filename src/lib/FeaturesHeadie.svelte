@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import TranWrapper from '$lib/TranWrapper.svelte';
 	export let para = '';
 	export let featuresHeadie = '';

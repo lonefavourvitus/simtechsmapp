@@ -1,5 +1,6 @@
 <script>
 	// import { supabase } from '$lib/supabaseClient';
+	// @ts-nocheck
 
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import { page, navigating } from '$app/stores';

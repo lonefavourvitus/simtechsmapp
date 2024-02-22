@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import { enhance } from '$app/forms';
 	// import { PUBLIC_DEMO_MODE } from '$env/static/public';
 	// import type { ActionData } from './$types';

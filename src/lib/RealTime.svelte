@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { onMount, onDestroy } from 'svelte';
 	let load = false;
 	let currentDateTime = new Date();

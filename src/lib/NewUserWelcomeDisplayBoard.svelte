@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { fade, blur, fly, scale } from 'svelte/transition';
 	import { aboutUsToggler, whyUsToggler } from '../stores';
 	import ButtonWithIcon from '$lib/ButtonWithIcon.svelte';

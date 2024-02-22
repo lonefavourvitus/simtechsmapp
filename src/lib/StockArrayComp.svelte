@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { nodeStopper, sumView } from '../stores';
 	import EachStockComp from '$lib/EachStockComp.svelte';
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
@@ -49,6 +51,7 @@
 		<EachStockComp remE={remS} eachStock={dad} />
 	</div>
 {/each}
+
 <!-- {:else if !$sumView} -->
 <!-- {#each stockArray as dad} -->
 

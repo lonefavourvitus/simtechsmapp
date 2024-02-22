@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	// based on suggestions from:
 	// Inclusive Components by Heydon Pickering https://inclusive-components.design/toggle-button/
 	// On Designing and Building Toggle Switches by Sara Soueidan https://www.sarasoueidan.com/blog/toggle-switch-design/

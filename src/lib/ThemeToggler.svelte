@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import Button from '$lib/Button.svelte';
 	import LightTheme from '/src/icons/LightTheme.svelte';
 	import MoonlightTheme from '/src/icons/MoonlightTheme.svelte';

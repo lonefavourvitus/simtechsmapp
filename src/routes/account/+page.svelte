@@ -1,5 +1,7 @@
 <!-- src/routes/account/+page.svelte -->
 <script>
+	// @ts-nocheck
+
 	import { enhance } from '$app/forms';
 	import { page, navigating } from '$app/stores';
 

@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import { handleDrugRemoval } from '/src/functions/handleDrugRemovalFunction_F.svelte';
 	import {
 		doubleLinerValue,

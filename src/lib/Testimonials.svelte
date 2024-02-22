@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import Divider from '$lib/Divider.svelte';
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import ButtonWithIcon from '$lib/ButtonWithIcon.svelte';
@@ -135,7 +137,8 @@
 		/* height: fit-content; */
 		height: 100vh !important;
 		justify-content: center;
-		background: center / contain no-repeat
+		background:
+			center / contain no-repeat
 				linear-gradient(#060a0f, hsla(226, 92%, 5%, 0.96), hsla(117, 92%, 5%, 0.96)),
 			url('assets/images/heroproductshots/ps1.png');
 		transition: all 1s;

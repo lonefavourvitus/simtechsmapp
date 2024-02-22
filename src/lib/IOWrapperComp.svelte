@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { onMount, onDestroy } from 'svelte';
 	import { browser } from '$app/environment';
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';

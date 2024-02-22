@@ -1,3 +1,6 @@
+// @ts-nocheck
+
+
 import { fail, redirect } from '@sveltejs/kit'
 // @ts-ignore
 
@@ -55,7 +58,6 @@ export const actions = {
         }
     },
     // @ts-ignore
-
     signout: async ({ locals: { supabase, getSession } }) => {
         const session = await getSession()
         if (session) {

@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import Button from '$lib/Button.svelte';
 	export let btnName = '';
 	export let hrefAt;

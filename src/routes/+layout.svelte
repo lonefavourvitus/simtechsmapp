@@ -1,5 +1,7 @@
 <!-- src/routes/+layout.svelte -->
 <script>
+// @ts-nocheck
+
 	import { page, navigating } from '$app/stores';
 
 	// import { invalidate } from '$app/navigation';

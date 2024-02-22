@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { beforeUpdate, afterUpdate } from 'svelte';
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 

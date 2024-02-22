@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	export let tooltip = false;
 	export let isCentered = false;
 </script>

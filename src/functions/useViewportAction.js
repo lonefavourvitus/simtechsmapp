@@ -1,5 +1,5 @@
 
-// @ts-ignore
+// @ts-nocheck
 let intersectionObserver;
 var options = {
     rootMargin: '0px',

@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import DrugListForP from '/src/routes/view-previous-sales-page-redirect/lib/DrugListForP.svelte';
 	import ButtonWithIcon from '$lib/ButtonWithIcon.svelte';

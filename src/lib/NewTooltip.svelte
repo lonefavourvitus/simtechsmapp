@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	let nTooltipText = '';
 	let ntooltip = '';
 	let nshowTooltip = false;

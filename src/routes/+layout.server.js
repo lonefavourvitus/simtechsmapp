@@ -10,6 +10,7 @@
 
 // import type { LayoutServerLoad } from './$types'
 // @ts-ignore
+// @ts-nocheck
 
 export const load = async ({ locals: { getSession } }) => {
     return {

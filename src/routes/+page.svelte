@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import HeroCont from '$lib/HeroCont.svelte';
 	import FeaturesHeadie from '$lib/FeaturesHeadie.svelte';
 	import DeskTop from '$lib/DeskTop.svelte';

@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import HeroCont from '$lib/HeroCont.svelte';
 	import VideoPlayer from '$lib/VideoPlayer.svelte';

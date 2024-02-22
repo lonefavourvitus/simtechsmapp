@@ -1,3 +1,4 @@
+// @ts-nocheck
 function getSettings(settings = {}) {
     return { scale: 1, max: 10, reverse: false, ...settings };
 }

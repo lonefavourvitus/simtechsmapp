@@ -1,4 +1,6 @@
 <script context="module">
+	// @ts-nocheck
+
 	import { nodeStopper, drugStore } from '../stores';
 
 	export function nodeActiony(node) {

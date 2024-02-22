@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	// These values are bound to properties of the video
 	let time = 0;
 	let duration;

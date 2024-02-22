@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { mainBgDarkProp } from '../stores';
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 

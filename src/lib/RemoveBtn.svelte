@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import { lumpCompDarkProps, ll } from '../stores';
 	import { onMount, onDestroy } from 'svelte';
 

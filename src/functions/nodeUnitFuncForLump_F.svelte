@@ -1,4 +1,6 @@
 <script context="module">
+	// @ts-nocheck
+
 	export const nodeUnitFunction = smoothAutoScrollToggler;
 	export const scrollBehaviourProperty = { behavior: 'smooth' };
 

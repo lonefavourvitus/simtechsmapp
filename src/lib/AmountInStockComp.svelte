@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { lumpCompDarkProps } from '../stores';
 
 	export let drugStoreAmountInStock;

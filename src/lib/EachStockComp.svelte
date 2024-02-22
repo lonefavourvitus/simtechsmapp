@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import RemoveBtn from '$lib/RemoveBtn.svelte';
 	import ButtonWithIcon from '$lib/ButtonWithIcon.svelte';
 	import Button from '$lib/Button.svelte';

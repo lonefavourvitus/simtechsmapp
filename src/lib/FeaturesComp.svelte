@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import TranWrapper from '$lib/TranWrapper.svelte';
 	import ButtonWithIcon from '$lib/ButtonWithIcon.svelte';

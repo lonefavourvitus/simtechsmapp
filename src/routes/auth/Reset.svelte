@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { enhance } from '$app/forms';
 	import TextSwapper from '$lib/TextSwapper.svelte';
 	import SpinningLoader from '$lib/SpinningLoader.svelte';

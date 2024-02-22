@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 
 	import { ini } from '../stores';

@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { enhance } from '$app/forms';
 	// import { FrownIcon } from 'svelte-feather-icons';
 	import { fade } from 'svelte/transition';

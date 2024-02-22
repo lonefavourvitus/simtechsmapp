@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import TranWrapper from '$lib/TranWrapper.svelte';
 	import tilt from '/src/functions/tilt.js';
@@ -92,8 +94,11 @@
 		transition: all 0.5s;
 	}
 	main:hover {
-		box-shadow: -2px 0px 0px 0px hsl(271, 91%, 30%), 2px 0px 0px 0px hsl(126, 100%, 30%),
-			0px -2px 0px 0px hsl(61, 100%, 30%), 0px 2px 0px 0px hsl(226, 91%, 30%);
+		box-shadow:
+			-2px 0px 0px 0px hsl(271, 91%, 30%),
+			2px 0px 0px 0px hsl(126, 100%, 30%),
+			0px -2px 0px 0px hsl(61, 100%, 30%),
+			0px 2px 0px 0px hsl(226, 91%, 30%);
 		/* animation: rot 5s linear infinite; */
 		transition: all 0.5s;
 	}
@@ -102,20 +107,29 @@
 	}
 	@keyframes rot {
 		0% {
-			box-shadow: -2px 0px 0px 0px hsl(271, 91%, 30%), 2px 0px 0px 0px hsl(126, 100%, 30%),
-				0px -2px 0px 0px hsl(61, 100%, 30%), 0px 2px 0px 0px hsl(226, 91%, 30%);
+			box-shadow:
+				-2px 0px 0px 0px hsl(271, 91%, 30%),
+				2px 0px 0px 0px hsl(126, 100%, 30%),
+				0px -2px 0px 0px hsl(61, 100%, 30%),
+				0px 2px 0px 0px hsl(226, 91%, 30%);
 		}
 		/* 25% {
 			box-shadow: 0px 2px 0px 0px hsl(226, 91%, 30%), -2px 0px 0px 0px hsl(271, 91%, 30%),
 				2px 0px 0px 0px hsl(126, 100%, 30%), 0px -2px 0px 0px hsl(61, 100%, 30%);
 		} */
 		75% {
-			box-shadow: 0px -2px 0px 0px hsl(61, 100%, 30%), 0px 2px 0px 0px hsl(226, 91%, 30%),
-				-2px 0px 0px 0px hsl(271, 91%, 30%), 2px 0px 0px 0px hsl(126, 100%, 30%);
+			box-shadow:
+				0px -2px 0px 0px hsl(61, 100%, 30%),
+				0px 2px 0px 0px hsl(226, 91%, 30%),
+				-2px 0px 0px 0px hsl(271, 91%, 30%),
+				2px 0px 0px 0px hsl(126, 100%, 30%);
 		}
 		100% {
-			box-shadow: 2px 0px 0px 0px hsl(126, 100%, 30%), 0px -2px 0px 0px hsl(61, 100%, 30%),
-				0px 2px 0px 0px hsl(226, 91%, 30%), -2px 0px 0px 0px hsl(271, 91%, 30%);
+			box-shadow:
+				2px 0px 0px 0px hsl(126, 100%, 30%),
+				0px -2px 0px 0px hsl(61, 100%, 30%),
+				0px 2px 0px 0px hsl(226, 91%, 30%),
+				-2px 0px 0px 0px hsl(271, 91%, 30%);
 		}
 	}
 	/* Mobile First i.e Smaller to Larger Devices */

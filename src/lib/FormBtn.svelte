@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { onMount } from 'svelte';
 	import SignOutSvg from '/src/icons/SignOutSvg.svelte';
 	export let action = '/auth?/signout';

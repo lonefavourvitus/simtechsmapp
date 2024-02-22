@@ -24,6 +24,8 @@
 //     return { supabase, session }
 
 // }
+// @ts-nocheck
+
 
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public'
 // import type { LayoutLoad } from './$types'

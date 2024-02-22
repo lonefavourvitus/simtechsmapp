@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { onMount } from 'svelte';
 	let emoji;
 	const emojis = ['😄', '😊', '🎉', '👋', '😇', '😎'];

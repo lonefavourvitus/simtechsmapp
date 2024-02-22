@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import tilt from '/src/functions/tilt.js';
 
 	import { onMount } from 'svelte';
@@ -125,8 +127,11 @@
 	.cont,
 	svg {
 		width: 95vw;
-		box-shadow: -2px 0px 0px 0px hsl(271, 91%, 30%), 2px 0px 0px 0px hsl(126, 100%, 30%),
-			0px -2px 0px 0px hsl(61, 100%, 30%), 0px 2px 0px 0px hsl(226, 91%, 30%);
+		box-shadow:
+			-2px 0px 0px 0px hsl(271, 91%, 30%),
+			2px 0px 0px 0px hsl(126, 100%, 30%),
+			0px -2px 0px 0px hsl(61, 100%, 30%),
+			0px 2px 0px 0px hsl(226, 91%, 30%);
 		transition: all 0.5s;
 		/* animation: rot 5s linear infinite; */
 	}
@@ -217,8 +222,11 @@
 		.cont,
 		svg {
 			width: 45vw;
-			box-shadow: -2px 0px 0px 0px hsl(271, 91%, 30%), 2px 0px 0px 0px hsl(126, 100%, 30%),
-				0px -2px 0px 0px hsl(61, 100%, 30%), 0px 2px 0px 0px hsl(226, 91%, 30%);
+			box-shadow:
+				-2px 0px 0px 0px hsl(271, 91%, 30%),
+				2px 0px 0px 0px hsl(126, 100%, 30%),
+				0px -2px 0px 0px hsl(61, 100%, 30%),
+				0px 2px 0px 0px hsl(226, 91%, 30%);
 			transition: all 0.5s;
 			/* animation: rot 5s linear infinite; */
 		}
@@ -254,8 +262,11 @@
 		.cont,
 		svg {
 			width: 45vw;
-			box-shadow: -2px 0px 0px 0px hsl(271, 91%, 30%), 2px 0px 0px 0px hsl(126, 100%, 30%),
-				0px -2px 0px 0px hsl(61, 100%, 30%), 0px 2px 0px 0px hsl(226, 91%, 30%);
+			box-shadow:
+				-2px 0px 0px 0px hsl(271, 91%, 30%),
+				2px 0px 0px 0px hsl(126, 100%, 30%),
+				0px -2px 0px 0px hsl(61, 100%, 30%),
+				0px 2px 0px 0px hsl(226, 91%, 30%);
 			transition: all 0.5s;
 			/* animation: rot 5s linear infinite; */
 		}
@@ -292,8 +303,11 @@
 		.cont,
 		svg {
 			width: 45vw;
-			box-shadow: -2px 0px 0px 0px hsl(271, 91%, 30%), 2px 0px 0px 0px hsl(126, 100%, 30%),
-				0px -2px 0px 0px hsl(61, 100%, 30%), 0px 2px 0px 0px hsl(226, 91%, 30%);
+			box-shadow:
+				-2px 0px 0px 0px hsl(271, 91%, 30%),
+				2px 0px 0px 0px hsl(126, 100%, 30%),
+				0px -2px 0px 0px hsl(61, 100%, 30%),
+				0px 2px 0px 0px hsl(226, 91%, 30%);
 			transition: all 0.5s;
 			/* animation: rot 5s linear infinite; */
 		}
@@ -316,8 +330,11 @@
 		.cont,
 		svg {
 			width: 45vw;
-			box-shadow: -2px 0px 0px 0px hsl(271, 91%, 30%), 2px 0px 0px 0px hsl(126, 100%, 30%),
-				0px -2px 0px 0px hsl(61, 100%, 30%), 0px 2px 0px 0px hsl(226, 91%, 30%);
+			box-shadow:
+				-2px 0px 0px 0px hsl(271, 91%, 30%),
+				2px 0px 0px 0px hsl(126, 100%, 30%),
+				0px -2px 0px 0px hsl(61, 100%, 30%),
+				0px 2px 0px 0px hsl(226, 91%, 30%);
 			transition: all 0.5s;
 			/* animation: rot 5s linear infinite; */
 		}

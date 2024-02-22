@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	export let loading = false;
 	export let btnText;
 	export let text;

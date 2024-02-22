@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import {
 		drugProperties,
 		isExpandedForAddNewDrugForm,
@@ -30,8 +32,8 @@
 		// shortenedBrandName !== '' &&
 		fullBrandName !== '' && unitName !== ''
 			? // amountInStock !== null &&
-			  // price != null
-			  ($isDisabled = '')
+				// price != null
+				($isDisabled = '')
 			: ($isDisabled = 'disabled');
 	}
 

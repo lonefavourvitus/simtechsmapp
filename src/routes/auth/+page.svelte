@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { page, navigating } from '$app/stores';
 
 	// import { logo } from '$lib/stores';

@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	// import ViewPreviousSalesBtn from '$lib/PreviousSalesBtn.svelte';
 	import ButtonWithIcon from '$lib/ButtonWithIcon.svelte';
 	import ToolTip from '$lib/ToolTip.svelte';

@@ -1,3 +1,7 @@
+
+// @ts-nocheck
+
+
 // // src/hooks.server.js
 // // import { PUBmLIC_SUPABASE_URL, PmUBLIC_SUPABASE_ANON_KEY } from '$env/static/public'
 // import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit'

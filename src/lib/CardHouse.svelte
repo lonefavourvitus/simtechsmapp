@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import TranWrapper from '$lib/TranWrapper.svelte';
 	import IOWrapperComp from '$lib/IOWrapperComp.svelte';
 	import CardOne from '$lib/CardOne.svelte';

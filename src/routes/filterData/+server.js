@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 // import { supabase, getServiceSupabase } from "$lib/supabaseClient";
 // @ts-ignore

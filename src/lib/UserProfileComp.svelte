@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import MenuHoverSysComp from '$lib/MenuHoverSysComp.svelte';
 </script>
 

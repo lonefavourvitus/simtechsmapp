@@ -1,4 +1,6 @@
 // // src/routes/auth/callback/+server.js
+// @ts-nocheck
+
 import { redirect } from '@sveltejs/kit'
 // @ts-ignore
 

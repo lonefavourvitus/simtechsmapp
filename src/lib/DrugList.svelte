@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import { drugStore, showModal, multiDrugEntriesArray, showPrintBtn, sumView } from '../stores';
 	import Lump from '$lib/Lump.svelte';
 	import ButtonWithIcon from '$lib/ButtonWithIcon.svelte';

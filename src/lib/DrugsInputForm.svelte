@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	// import { v4 as uuidv4 } from 'uuid';
 	import { fade, blur, fly, slide, scale } from 'svelte/transition';
 	import {

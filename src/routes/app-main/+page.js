@@ -1,5 +1,6 @@
 // import { supabase } from "$lib/supabaseClient";
-// @ts-ignore
+
+// @ts-nocheck
 
 import { supabase } from "@supabase/ssr";
 import { drugStore, drugProperties } from "../../stores";

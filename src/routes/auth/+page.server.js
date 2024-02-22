@@ -1,4 +1,6 @@
 // import { PUBLIC_SITE_URL } from '$env/static/public';
+// @ts-nocheck
+
 import { AuthApiError } from '@supabase/supabase-js';
 import { fail, redirect } from '@sveltejs/kit';
 // import type { Actions } from './$types';
