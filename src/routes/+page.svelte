@@ -23,7 +23,7 @@
 <FeaturesHeadie featuresHeadie="secondFeatureSet" />
 <CardHouse num="one" />
 <Testimonials />
-<!-- <Stats /> -->
+<Stats />
 <CardHouse num="two" />
 
 <!-- <IOWrapperComp><h1>jksjksdjksdjksdjkd</h1></IOWrapperComp> -->
