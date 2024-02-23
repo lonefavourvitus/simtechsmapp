@@ -3,7 +3,8 @@
 // import { supabase, getServiceSupabase } from "$lib/supabaseClient";
 // @ts-ignore
 
-import { supabase, getServiceSupabase } from "@supabase/ssr";
+import { supabase } from "@supabase/ssr";
+// import { supabase, getServiceSupabase } from "@supabase/ssr";
 // import { json } from '@sveltejs/kit';
 // @ts-ignore
 
@@ -24,7 +25,9 @@ let emptySalesArray = false
 
 console.log('supabase is:', supabase)
 
-let gtt = getServiceSupabase()
+let gtt = createClient('https://rncxlbomipatsyzygigd.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJuY3hsYm9taXBhdHN5enlnaWdkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4MTQ1MTMzMiwiZXhwIjoxOTk3MDI3MzMyfQ.N6IquPFx-Gp8Qh8k5uEUcXaPf49SeefNDcEPr3j4Nuc')
+// let gtt = getServiceSupabase()
 
 export async function POST({ request }) {
     // const { filterDate } = request.body; // Get the filter date from the request body
