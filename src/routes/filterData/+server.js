@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { createClient } from '@supabase/supabase-js'
 
 // import { supabase, getServiceSupabase } from "$lib/supabaseClient";
 // @ts-ignore
